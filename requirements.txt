@@ -1,0 +1,12 @@
+jupyter
+notebook
+torch
+torchvision
+tqdm
+boto3
+requests
+regex
+sentencepiece
+sacremoses
+transformers
+importlib-metadata
