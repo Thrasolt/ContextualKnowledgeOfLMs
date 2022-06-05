@@ -45,7 +45,7 @@ def extract_data_from_line(line: str) -> Tuple[str, str]:
 
 
 class LamaTRExData:
-    def __init__(self, train: bool = True, relations=None) -> None:
+    def __init__(self, train: bool = False, relations=None) -> None:
         self.relations = RELATIONS if relations is None else relations
         self.data_dir: str = config["locations"]["train_data_dir"] if train else config["locations"]["test_data_dir"]
         self.data: Dict = {rel: [] for rel in self.relations}

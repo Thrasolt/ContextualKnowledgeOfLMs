@@ -11,3 +11,6 @@ sacremoses
 transformers
 importlib-metadata
 mypy
+numpy
+tabulate
+matplotlib

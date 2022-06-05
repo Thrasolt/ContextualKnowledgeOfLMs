@@ -40,6 +40,11 @@ class PromptModel(nn.Module):
             params[relation] = nn.Parameter(torch.randn(param_size))
         return params
 
+    def load_parameters(self) -> None:
+        for relation in RELATIONS:
+            templates: List[Tuple[str, float]] = self.prompts.prompts[self.category][relation]
+            self.params[relation] = nn.Parameter(torch.tensor([weight for _, weight in templates]))
+
     def generate_prompts(self, subject: str, relation: str) -> List[str]:
         generated_prompts: List[Tuple[str, float]] = self.prompts.generate_for_rel(self.category, relation, subject)
         return [prompt for prompt, weight in generated_prompts]

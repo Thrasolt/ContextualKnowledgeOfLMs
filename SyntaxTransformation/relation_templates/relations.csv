@@ -1,0 +1,9 @@
+relation,cardinality,relation_name
+P19,n:1,place of birth
+P36,1:1,capital
+P101,n:m,field of work
+P103,n:1,native language
+P178,n:1,developer
+P1001,n:1,applies to jurisdiction
+
+
