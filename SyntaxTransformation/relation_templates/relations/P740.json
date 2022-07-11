@@ -1,0 +1,8 @@
+{
+  "name": "location of formation",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] was founded in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a location and [SUBJ_LABEL] was founded there.",
+  "complex": "[OBJ_LABEL] is the location where [SUBJ_LABEL] was founded",
+  "compound-complex": "[OBJ_LABEL] is a location and it is the one where [SUBJ_LABEL] was founded."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "record label",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is represented by music label [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a music label and it represents [SUBJ_LABEL].",
+  "complex": "[OBJ_LABEL] represents [SUBJ_LABEL] because it is a music label.",
+  "compound-complex": "[OBJ_LABEL] is a music label, which means it represents musicians and it represents [SUBJ_LABEL] for example."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "occupation",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] is a [OBJ_LABEL] by profession.",
+  "compound": "[SUBJ_LABEL] was known in his field of work and his particular field was [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] has a profession, which is [OBJ_LABEL].",
+  "compound-complex": "[SUBJ_LABEL] was known in his discipline for the work he had done in his field and the subject of his work was [OBJ_LABEL]."
+}

@@ -1,0 +1,9 @@
+{
+  "name": "instance of",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is a [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] is an instance of something and it is one of [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] is an instance of something, which is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] has many instances of it and one is called [SUBJ_LABEL], which is one.",
+  "nominalized:": "[SUBJ_LABEL] is an instance of [OBJ_LABEL]."
+}

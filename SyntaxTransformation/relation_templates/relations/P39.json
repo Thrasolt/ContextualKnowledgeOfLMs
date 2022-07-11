@@ -1,0 +1,8 @@
+{
+  "name": "position held",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] has the position of [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a position and it is held by [SUBJ_LABEL].",
+  "complex": "[OBJ_LABEL] is a position which is held by [SUBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] is a position and it is occupied because it is held by [SUBJ_LABEL]."
+}

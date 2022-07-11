@@ -1,0 +1,8 @@
+{
+  "name": "location",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is located in [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] is a place and it is located in [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] is a place which is located in [OBJ_LABEL].",
+  "compound-complex": "[SUBJ_LABEL] is a place that is well known and it is located in [OBJ_LABEL]."
+}

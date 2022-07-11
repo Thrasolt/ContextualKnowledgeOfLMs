@@ -1,0 +1,9 @@
+{
+  "name": "country",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is located in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a country and [SUBJ_LABEL] is located there.",
+  "complex": "[SUBJ_LABEL] is located in [OBJ_LABEL], which is a country.",
+  "compound-complex": "[OBJ_LABEL] is a country and it is comprised of many locations, for example [SUBJ_LABEL].",
+  "nominalized:": "[SUBJ_LABEL] is the location of [OBJ_LABEL]."
+}

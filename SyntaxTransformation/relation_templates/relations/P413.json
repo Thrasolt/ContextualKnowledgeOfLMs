@@ -1,0 +1,11 @@
+{
+  "name": "position played on team / speciality",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] plays in [OBJ_LABEL] position.",
+  "compound": "[OBJ_LABEL] is a position and [SUBJ_LABEL] played in it.",
+  "complex": "[OBJ_LABEL] is the position that [SUBJ_LABEL] played in.",
+  "compound-complex": "[OBJ_LABEL] is one position out of many and it is the one that [SUBJ_LABEL] played in.",
+  "active": "[SUBJ_LABEL] plays in [OBJ_LABEL] position.",
+  "passive": "Position [OBJ_LABEL] is played by [SUBJ_LABEL].",
+  "nominalized": "[SUBJ_LABEL] is the [OBJ_LABEL] position player."
+}

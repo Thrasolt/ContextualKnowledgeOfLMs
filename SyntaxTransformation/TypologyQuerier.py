@@ -3,52 +3,33 @@ from typing import Dict, Callable, List, Tuple
 from tqdm import tqdm
 import torch.nn as nn
 
-from relation_templates.P19_place_of_birth import retrieve_all_prompts as p19
-from relation_templates.P36_capital import retrieve_all_prompts as p36
-from relation_templates.P101_field_of_work import retrieve_all_prompts as p101
-from relation_templates.P178_developer import retrieve_all_prompts as p178
+from relation_templates.templates import get_template_list, get_templates
 from SentenceTypologyQueryResults import SentenceTypologyQueryResults
 
-functions_for_relations: Dict[str, Callable[[str, str], List[str]]] = {
-    "P19": p19,
-    "P36": p36,
-    "P101": p101,
-    "P178": p178,
-}
+SIMPLE = 'simple'
+COMPOUND = 'compound'
+COMPLEX = 'complex'
+COMCOM = "compound-complex"
 
-
-def templater(relation: str, sub: str, obj: str) -> List[str]:
-    return functions_for_relations[relation](sub, obj)
-
-
-def get_all_templates() -> List[str]:
-    templates: List[str] = []
-    for func in functions_for_relations.values():
-        for template in func("subject", "object"):
-            templates.append(template)
-    return templates
+KEYS = [SIMPLE, COMPOUND, COMPLEX, COMCOM]
 
 
 class TypologyQuerier:
-    def __init__(self, model: nn.Module, relations: List[str], top_k: int, mask_token: str):
+    def __init__(self, model: nn.Module, relations: List[str], top_k: int, mask_token: str , keys: List = KEYS):
         self.model: nn.Module = model
         self.relations: List[str] = relations
-        self.top_k = top_k
-        self.results: SentenceTypologyQueryResults = SentenceTypologyQueryResults(self.relations, self.top_k)
+        self.keys: List[str] = keys
+        self.top_k: int = top_k
+        self.results: SentenceTypologyQueryResults = SentenceTypologyQueryResults(self.relations, self.top_k, keys)
         self.queries: Dict[str, List[Tuple[str, str, str]]] = {relation: [] for relation in self.relations}
         self.mask: str = mask_token
 
     def query(self, triples: Dict[str, List[Tuple[str, str]]]):
         for relation in self.relations:
             for sub, obj in tqdm(triples[relation]):
-                query_simple, query_compound, query_complex, query_complex_compound = templater(relation, sub, self.mask)
-                self.queries[relation].append((sub, obj, query_simple))
-                res_simple = self.model(query_simple)
-                res_compound = self.model(query_compound)
-                res_complex = self.model(query_complex)
-                res_complex_compound = self.model(query_complex_compound)
-                self.results.process_answers(obj, relation,
-                                             [res_simple, res_compound, res_complex, res_complex_compound])
+                templates: Dict = get_templates(relation, sub, self.mask, self.keys)
+                answers: Dict[str, List] = {key:self.model(templates[key]) for key in self.keys}
+                self.results.process_answers(obj, relation, answers)
 
     def set_top_k(self, top_k: int):
         self.top_k = top_k
@@ -58,7 +39,14 @@ class TypologyQuerier:
         self.model: nn.Module = model
 
     def reset(self):
-        self.results = SentenceTypologyQueryResults(self.relations, self.top_k)
+        self.results = SentenceTypologyQueryResults(self.relations, self.top_k, self.keys)
 
     def print_result(self):
         self.results.print_result()
+
+    def print_global_result(self):
+        self.results.print_global_result()
+
+    def print_for_latex(self, header_kex: str = "accuracy"):
+        for row in self.results.print_for_latex(header_kex):
+            print(row)

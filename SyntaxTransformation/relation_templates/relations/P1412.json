@@ -1,0 +1,8 @@
+{
+  "name": "languages spoken, written or signed",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] used to communicate in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a language and [SUBJ_LABEL] used to communicate in it.",
+  "complex": "[OBJ_LABEL] is the language, that [SUBJ_LABEL] used to communicate in.",
+  "compound-complex": "[OBJ_LABEL] is a language, in which many people used to communicate and [SUBJ_LABEL] did exactly that."
+}

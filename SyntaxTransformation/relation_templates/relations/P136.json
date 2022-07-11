@@ -1,0 +1,11 @@
+{
+  "name": "genre",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] plays [OBJ_LABEL] music.",
+  "compound": "[OBJ_LABEL] is a genre and [SUBJ_LABEL] fits into it.",
+  "complex": "[SUBJ_LABEL] is part of [OBJ_LABEL], which is a popular genre.",
+  "compound-complex": "[OBJ_LABEL] is a genre comprised of many creators and their work, and [SUBJ_LABEL] is an example of such.",
+  "active": "[SUBJ_LABEL] plays [OBJ_LABEL] music.",
+  "passive": "[OBJ_LABEL] music is played by [SUBJ_LABEL].",
+  "nominalized": "[SUBJ_LABEL] is a [OBJ_LABEL] musician."
+}

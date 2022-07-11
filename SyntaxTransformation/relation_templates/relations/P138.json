@@ -1,0 +1,8 @@
+{
+  "name": "named after",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is named after [OBJ_LABEL].",
+  "compound": "Many things were named after [OBJ_LABEL] and [SUBJ_LABEL] is an example of that.",
+  "complex": "Many things were named after [OBJ_LABEL] which [SUBJ_LABEL] is an example of.",
+  "compound-complex": "Many things were named after [OBJ_LABEL] and [SUBJ_LABEL], among other things, is an example of that."
+}

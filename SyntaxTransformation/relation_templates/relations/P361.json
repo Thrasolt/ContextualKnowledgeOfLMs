@@ -1,0 +1,8 @@
+{
+  "name": "part of",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is part of [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] is part of another thing and that thing is [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] is part of another thing which is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] has many parts, that make it up and [SUBJ_LABEL] is of them."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "has part or parts",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] consists of [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] has parts and [OBJ_LABEL] is one of them.",
+  "complex": "[SUBJ_LABEL] has parts many parts, for example [OBJ_LABEL].",
+  "compound-complex": "[SUBJ_LABEL] has parts and [OBJ_LABEL], like many others, is one of them."
+}

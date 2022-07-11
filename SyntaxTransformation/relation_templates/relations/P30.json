@@ -1,0 +1,9 @@
+{
+  "name": "continent",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is located in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a continent and [SUBJ_LABEL] is located there.",
+  "complex": "[OBJ_LABEL] is the continent in which [SUBJ_LABEL] is located.",
+  "compound-complex": "[OBJ_LABEL] is a continent and it is the one in which [SUBJ_LABEL] is located.",
+  "nominalized:": "[OBJ_LABEL] is the continent of [SUBJ_LABEL]."
+}

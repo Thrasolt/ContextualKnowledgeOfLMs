@@ -1,0 +1,8 @@
+{
+  "name": "religion or worldview",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is affiliated with the religion called [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a religion or a worldview and [SUBJ_LABEL] is affiliated with it.",
+  "complex": "[SUBJ_LABEL] is affiliated with [OBJ_LABEL] which is a religion or a worldview.",
+  "compound-complex": "Many people are associated with a religion or a worldview and [SUBJ_LABEL] is affiliated with one of these, which is [OBJ_LABEL] specifically."
+}

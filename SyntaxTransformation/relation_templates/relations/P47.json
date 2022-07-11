@@ -1,0 +1,8 @@
+{
+  "name": "shares border with",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] shares border with [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] is a country and it shares a border with [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] is one of the countries that shares a border with [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] and [SUBJ_LABEL] are countries and have a border that they share."
+}

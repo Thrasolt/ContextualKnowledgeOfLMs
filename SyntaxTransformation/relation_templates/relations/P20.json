@@ -1,0 +1,9 @@
+{
+  "name": "place of death",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] died in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is the name of a place and [SUBJ_LABEL] died there.",
+  "complex": "[OBJ_LABEL] is the name of the place, where [SUBJ_LABEL] died.",
+  "compound-complex": "[OBJ_LABEL] is the name of the place, where some people died, for example [SUBJ_LABEL].",
+  "nominalized:": "[OBJ_LABEL] is [SUBJ_LABEL]'s place of death."
+}

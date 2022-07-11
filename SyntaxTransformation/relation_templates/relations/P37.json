@@ -1,0 +1,8 @@
+{
+  "name": "official language",
+  "cardinality": "N:1",
+  "simple": "The official language of [SUBJ_LABEL] is [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is used in [SUBJ_LABEL] and it is also its official language.",
+  "complex": "[OBJ_LABEL] is used in [SUBJ_LABEL] which is also its official language.",
+  "compound-complex": "[OBJ_LABEL] is a language and it is used in [SUBJ_LABEL] which is also its official one."
+}

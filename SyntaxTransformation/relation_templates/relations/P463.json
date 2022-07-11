@@ -1,0 +1,8 @@
+{
+  "name": "member of ",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] is a member of [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is an organisation and [SUBJ_LABEL] is a member of it.",
+  "complex": "[OBJ_LABEL] is one organisation that [SUBJ_LABEL] is a member of.",
+  "compound-complex": "[OBJ_LABEL] is an organisation with many members and [SUBJ_LABEL] is one of them."
+}

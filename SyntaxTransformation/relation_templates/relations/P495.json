@@ -1,0 +1,8 @@
+{
+  "name": "country of origin",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] was created in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a country and [SUBJ_LABEL] was created in it.",
+  "complex": "[OBJ_LABEL] is the country that [SUBJ_LABEL] was created in.",
+  "compound-complex": "[OBJ_LABEL] is a country and it is the one that [SUBJ_LABEL] was created in."
+}

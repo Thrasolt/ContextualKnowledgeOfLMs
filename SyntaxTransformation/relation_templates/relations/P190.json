@@ -1,0 +1,8 @@
+{
+  "name": "twinned administrative body",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] and [OBJ_LABEL] are twin cities.",
+  "compound": "[SUBJ_LABEL] and [OBJ_LABEL] are both cities and they are also twin cities.",
+  "complex": "[SUBJ_LABEL] and [OBJ_LABEL] are twinned administrative bodies, which means they are twin cities.",
+  "compound-complex": "[SUBJ_LABEL] and [OBJ_LABEL] are both administrative bodies and they are twined, which means they are twin cities."
+}

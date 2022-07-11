@@ -1,11 +1,32 @@
 from typing import List, Dict, Tuple, Union
 from tabulate import tabulate
 
+import relation_templates.templates as templates
+
 
 SIMPLE = 'simple'
 COMPOUND = 'compound'
 COMPLEX = 'complex'
 COMCOM = "compound-complex"
+KEYS = [SIMPLE, COMPOUND, COMPLEX, COMCOM]
+
+ONE_TO_ONE = "1:1"
+N_TO_ONE = "N:1"
+N_TO_M = "N:M"
+CARDINALITIES = [ONE_TO_ONE, N_TO_ONE, N_TO_M]
+
+CORRECT = "correct"
+TOTAL = "total"
+ACCURACY = "accuracy"
+
+HEADER_KEYS = [CORRECT, TOTAL, ACCURACY]
+
+HEADERS = ['type', 'correct', 'total', "accuracy"]
+
+
+def get_rel_card_from_str_row(row: str) -> str:
+    cols: List[str] = row.split("&")
+    return cols[2].strip() + cols[0].strip()
 
 
 class RelationResult:
@@ -27,79 +48,122 @@ class RelationResult:
         print(f"accuracy: {self.correct_answers/self.total_answers * 100}%")
 
     def accuracy(self) -> float:
-        return self.correct_answers/self.total_answers * 100
+        try:
+            return self.correct_answers/self.total_answers * 100
+        except ZeroDivisionError as error:
+            return 0.0
 
-    def get(self) -> List[Union[int, float]]:
-        return [self.correct_answers, self.total_answers, self.accuracy()]
+    def get(self) -> Dict[str, Union[int, float]]:
+        return {CORRECT: self.correct_answers,
+                TOTAL: self.total_answers,
+                ACCURACY: self.accuracy()}
 
     def set_top_k(self, top_k: int):
         self.top_k = top_k
 
 
 class TypologyResults:
-    def __init__(self, relation: str, top_k: int):
+    def __init__(self, relation: str, top_k: int, keys: List[str]):
         self.relation: str = relation
         self.top_k: int = top_k
-        self.type_1: RelationResult = RelationResult(relation, top_k)
-        self.type_2: RelationResult = RelationResult(relation, top_k)
-        self.type_3: RelationResult = RelationResult(relation, top_k)
-        self.type_4: RelationResult = RelationResult(relation, top_k)
+        self.keys: List[str] = keys
+        self.types: Dict[str, RelationResult] = {key: RelationResult(relation, top_k) for key in self.keys}
 
-    def process_answers(self, label: str, answers: List[List]):
-        self.type_1.process_answer(label, answers[0])
-        self.type_2.process_answer(label, answers[1])
-        self.type_3.process_answer(label, answers[2])
-        self.type_4.process_answer(label, answers[3])
+    def process_answers(self, label: str, answers: Dict[str, List]):
+        for key, answer in answers.items():
+            self.types[key].process_answer(label, answer)
 
     def print_result(self):
-        print("Results Type 1:")
-        self.type_1.print_result()
-        print("Results Type 2:")
-        self.type_2.print_result()
-        print("Results Type 3:")
-        self.type_3.print_result()
-        print("Results Type 4:")
-        self.type_4.print_result()
+        for key in self.keys:
+            self.types[key].print_result()
 
-    def get(self) -> List[List[Union[int, float]]]:
-        return [
-            [SIMPLE, *self.type_1.get()],
-            [COMPOUND, *self.type_2.get()],
-            [COMPLEX, *self.type_3.get()],
-            [COMCOM, *self.type_4.get()],
-        ]
+    def get(self) -> Dict[str, Dict[str, Union[int, float]]]:
+        return {key: self.types[key].get() for key in self.keys}
 
     def set_top_k(self, top_k: int):
         self.top_k = top_k
-        self.type_1.set_top_k(top_k)
-        self.type_3.set_top_k(top_k)
-        self.type_3.set_top_k(top_k)
-        self.type_4.set_top_k(top_k)
+        for key in self.keys:
+            self.types[key].set_top_k(top_k)
 
 
 class SentenceTypologyQueryResults:
-    def __init__(self, relations: List[str], top_k: int):
+    def __init__(self, relations: List[str], top_k: int, keys: List[str]):
         self.top_k = top_k
         self.relations: List[str] = relations
-        self.relation_results: Dict[str, TypologyResults] = {}
-        for relation in relations:
-            self.relation_results[relation] = TypologyResults(relation, self.top_k)
+        self.keys: List[str] = keys
+        self.total_results: TypologyResults = TypologyResults("Total", self.top_k, self.keys)
+        self.cardinality_results: Dict[str, TypologyResults] = self.init_cardinality_results()
+        self.relation_results: Dict[str, TypologyResults] = self.init_relation_results()
 
-    def process_answers(self, label: str, relation: str, answers: List[List]):
+    def init_cardinality_results(self):
+        return {card: TypologyResults("Total", self.top_k, self.keys) for card in CARDINALITIES}
+
+    def init_relation_results(self):
+        relation_results: Dict[str, TypologyResults] = {}
+        for relation in self.relations:
+            relation_results[relation] = TypologyResults(relation, self.top_k, self.keys)
+        return relation_results
+
+    def process_answers(self, label: str, relation: str, answers: Dict[str, List]):
         if relation in self.relation_results.keys():
             self.relation_results[relation].process_answers(label, answers)
+            card: str = templates.get_relation_cardinality(relation)
+            self.cardinality_results[card].process_answers(label, answers)
+        self.total_results.process_answers(label, answers)
 
     def set_top_k(self, top_k: int):
         self.top_k = top_k
+        self.total_results.set_top_k(top_k)
+        for card in self.cardinality_results.values():
+            card.set_top_k(top_k)
         for res in self.relation_results.values():
             res.set_top_k(top_k)
 
+    def print_global_result(self):
+        self.print_total()
+        self.print_cardinalities()
+
     def print_result(self):
-        headers = ['type', 'correct', 'total', "accuracy"]
         for relation, result in self.relation_results.items():
-            print(f"{relation}:")
-            table = tabulate(result.get(), headers, tablefmt='orgtbl')
+            print(f"{relation}: {templates.get_relation_name(relation)} {templates.get_relation_cardinality(relation)}")
+
+            rows: List[List[Union[str, int, float]]] = self.build_table_rows(relation)
+
+            table = tabulate(rows, HEADERS, tablefmt='orgtbl')
             print(table)
+
+    def print_total(self):
+        rows: List[List[Union[str, int, float]]] = []
+        for key, res in self.total_results.get().items():
+            rows.append([key, *res.values()])
+        table = tabulate(rows, HEADERS, tablefmt='orgtbl')
+        print(f"total Result")
+        print(table)
+
+    def print_cardinalities(self):
+        for card in self.cardinality_results.keys():
+            rows: List[List[Union[str, int, float]]] = []
+            for key, res in self.cardinality_results[card].get().items():
+                rows.append([key, *res.values()])
+            table = tabulate(rows, HEADERS, tablefmt='orgtbl')
+            print(f"Total Result for {card}")
+            print(table)
+
+    def build_table_rows(self, relation) -> List[List[Union[str, int, float]]]:
+        rows: List[List[Union[str, int, float]]] = []
+        for key, res in self.relation_results[relation].get().items():
+            rows.append([key, *res.values()])
+        return rows
+
+    def print_for_latex(self, header_key: str) -> List[str]:
+        rows: List[str] = []
+        for relation, result in self.relation_results.items():
+            row: str = f"{relation} & {templates.get_relation_name(relation)} & {templates.get_relation_cardinality(relation)}"
+            for key in self.keys:
+                row = f"{row} & {result.get()[key][header_key]:.2f}"
+            rows.append(f"{row} \\\\")
+
+        return sorted(rows, key=get_rel_card_from_str_row)
 
 
 

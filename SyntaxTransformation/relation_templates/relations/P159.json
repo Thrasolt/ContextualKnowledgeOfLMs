@@ -1,0 +1,8 @@
+{
+  "name": "headquarters location",
+  "cardinality": "N:1",
+  "simple": "The headquarter of [SUBJ_LABEL] is in [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] is located in [OBJ_LABEL] and that is where they have their headquarters",
+  "complex": "[SUBJ_LABEL] is located in [OBJ_LABEL] because they have their headquarters there.",
+  "compound-complex": "[SUBJ_LABEL] has a location in [OBJ_LABEL] and this location is important because it is their headquarters."
+}

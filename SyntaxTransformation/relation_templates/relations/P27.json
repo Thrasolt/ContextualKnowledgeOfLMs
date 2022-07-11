@@ -1,0 +1,9 @@
+{
+  "name": "country of citizenship",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] is [OBJ_LABEL] citizen.",
+  "compound": "[OBJ_LABEL] is a country and [SUBJ_LABEL] is a citizen of it.",
+  "complex": "[OBJ_LABEL] is the country of which [SUBJ_LABEL] is a citizen.",
+  "compound-complex": "[OBJ_LABEL] is a country, with many citizens, for example [SUBJ_LABEL] is one of them.",
+  "nominalized:": "[SUBJ_LABEL] is [OBJ_LABEL] citizen."
+}

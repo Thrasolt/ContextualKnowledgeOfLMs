@@ -1,0 +1,8 @@
+{
+  "name": "subclass of",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is a subclass of [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] has subclasses and [SUBJ_LABEL] is an example of that.",
+  "complex": "[SUBJ_LABEL]is a subclass of another class which is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] is a class and it has subclasses, like [SUBJ_LABEL]."
+}

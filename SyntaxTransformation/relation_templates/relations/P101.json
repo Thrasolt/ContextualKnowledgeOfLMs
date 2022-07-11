@@ -1,0 +1,8 @@
+{
+  "name": "field of work",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] works in the field of [OBJ_LABEL] .",
+  "compound": "[SUBJ_LABEL] was known in his field of work and his particular one was [OBJ_LABEL].",
+  "complex": "People in his time knew [OBJ_LABEL]'s field of work, which was [SUBJ_LABEL].",
+  "compound-complex": "[SUBJ_LABEL] was known in his field for the work that he had done and his work was in [OBJ_LABEL]."
+}

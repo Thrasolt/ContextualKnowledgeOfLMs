@@ -1,0 +1,8 @@
+{
+  "name": "diplomatic relation",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] maintains diplomatic relations with [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] maintains diplomatic relations with many countries and [OBJ_LABEL] is one of them.",
+  "complex": "[SUBJ_LABEL] is a country that maintains diplomatic relations with [OBJ_LABEL].",
+  "compound-complex": "[SUBJ_LABEL] is a country that maintains diplomatic relations with many others and [OBJ_LABEL] is one of them."
+}

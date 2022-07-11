@@ -1,0 +1,8 @@
+{
+  "name": "employer",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] works for [OBJ_LABEL] .",
+  "compound": "[OBJ_LABEL] is an employer and as such it employs [SUBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] has an employer, which is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] employs many people and [SUBJ_LABEL] is an example because he works for them."
+}

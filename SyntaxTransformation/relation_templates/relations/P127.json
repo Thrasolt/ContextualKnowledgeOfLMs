@@ -1,0 +1,11 @@
+{
+  "name": "owned by",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is owned by [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] has an owner and it' is [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] has an owner which is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] owns many things and [SUBJ_LABEL] is an example because it is owned by them.",
+  "active": "[OBJ_LABEL] owns [SUBJ_LABEL] music.",
+  "passive": "[SUBJ_LABEL] is owned by [OBJ_LABEL].",
+  "nominalized": "[SUBJ_LABEL] is [OBJ_LABEL]'s property."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "work location",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] used to work in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a location and [SUBJ_LABEL] used to work there.",
+  "complex": "[OBJ_LABEL] is the location where [SUBJ_LABEL] used to work in.",
+  "compound-complex": "[OBJ_LABEL] is a location and it is the one where [SUBJ_LABEL] used to work in."
+}

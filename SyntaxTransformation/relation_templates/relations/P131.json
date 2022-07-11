@@ -1,0 +1,8 @@
+{
+  "name": "located in the administrative territorial entity",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is located in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a location and [SUBJ_LABEL] is located in it.",
+  "complex": "[OBJ_LABEL] is the location in which [SUBJ_LABEL] is located.",
+  "compound-complex": "[OBJ_LABEL] is a location and an example of something located in it is [SUBJ_LABEL]."
+}

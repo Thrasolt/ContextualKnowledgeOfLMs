@@ -1,0 +1,11 @@
+{
+  "name": "instrument",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] plays [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is an Instrument and [SUBJ_LABEL] plays it.",
+  "complex": "[OBJ_LABEL] is an Instrument, which is played by [SUBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] is an Instrument and it is associated with [SUBJ_LABEL] because he plays it.",
+  "active": "[SUBJ_LABEL] plays [OBJ_LABEL].",
+  "passive": "[OBJ_LABEL] is played by [SUBJ_LABEL] .",
+  "nominalized": "[OBJ_LABEL] is [SUBJ_LABEL]'s instrument."
+}

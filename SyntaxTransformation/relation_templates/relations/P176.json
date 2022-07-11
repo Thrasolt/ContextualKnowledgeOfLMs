@@ -1,0 +1,11 @@
+{
+  "name": "manufacturer",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] is produced by [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a producer and [SUBJ_LABEL] is one of their products.",
+  "complex": "[SUBJ_LABEL] has a producer, which is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] is a producer and [SUBJ_LABEL] is a product, which is made by them.",
+  "active": "[OBJ_LABEL] produces [SUBJ_LABEL].",
+  "passive": "[SUBJ_LABEL] is produced by [OBJ_LABEL].",
+  "nominalized": "[SUBJ_LABEL] is a [OBJ_LABEL] product."
+}

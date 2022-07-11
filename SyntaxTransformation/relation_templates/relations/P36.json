@@ -1,0 +1,9 @@
+{
+  "name": "capital",
+  "cardinality": "1:1",
+  "simple": "The capital of [SUBJ_LABEL] is [OBJ_LABEL] .",
+  "compound": "[SUBJ_LABEL] is a country and it's capital is [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] is the country, who's capital is [OBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] is a city and it is the city that is the capital of [SUBJ_LABEL]."
+
+}

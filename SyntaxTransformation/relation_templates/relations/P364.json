@@ -1,0 +1,8 @@
+{
+  "name": "original language of film or TV show",
+  "cardinality": "N:1",
+  "simple": "The original language of [SUBJ_LABEL] is [OBJ_LABEL].",
+  "compound": "[SUBJ_LABEL] can be watched in its original language and it is [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] can be watched in its original language which is [OBJ_LABEL].",
+  "compound-complex": "The production was called [SUBJ_LABEL] and it can be watched in its original language, which is [OBJ_LABEL]."
+}

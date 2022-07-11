@@ -1,0 +1,8 @@
+{
+  "name": "original broadcaster",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] was originally aired on [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a broadcaster and [SUBJ_LABEL] aired on it.",
+  "complex": "[OBJ_LABEL] is the broadcaster, that [SUBJ_LABEL] aired on.",
+  "compound-complex": "[OBJ_LABEL] is one broadcaster out of many and it is the one, that [SUBJ_LABEL] aired on."
+}

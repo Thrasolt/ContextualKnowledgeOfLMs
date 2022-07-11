@@ -1,0 +1,8 @@
+{
+  "name": "applies to jurisdiction",
+  "cardinality": "N:M",
+  "simple": "[SUBJ_LABEL] applies to the jurisdiction of [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is a jurisdiction and [SUBJ_LABEL] applies to it.",
+  "complex": "[SUBJ_LABEL] is applied to by a certain jurisdiction which is [OBJ_LABEL].",
+  "compound-complex": "[SUBJ_LABEL] applies to [OBJ_LABEL] because the later is a jurisdiction and the former applies to it."
+}

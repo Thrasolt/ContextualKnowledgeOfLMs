@@ -1,0 +1,9 @@
+{
+  "name": "place of birth",
+  "cardinality": "N:1",
+  "simple": "[SUBJ_LABEL] was born in [OBJ_LABEL].",
+  "compound": "[OBJ_LABEL] is the name of a place and [SUBJ_LABEL] was born there.",
+  "complex": "[OBJ_LABEL] is the name of the place, where [SUBJ_LABEL] was born.",
+  "compound-complex": "[OBJ_LABEL] is the name of the place, where some people were born for example [SUBJ_LABEL] was born there.",
+  "nominalized:": "[OBJ_LABEL] is the birthplace of [SUBJ_LABEL]."
+}
