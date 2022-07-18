@@ -1,7 +1,8 @@
 import json
 from os.path import isfile, join
-from typing import Dict, List
+from typing import Dict, List, Union, Callable
 from os import listdir
+import re
 
 SIMPLE = 'simple'
 COMPOUND = 'compound'
@@ -20,6 +21,8 @@ relations = [file_name.split(".json")[0] for file_name in
              [file_name for file_name in listdir(RELATIONS_PATH) if isfile(join(RELATIONS_PATH, file_name))]]
 
 nominalized_relations = ["P127", "P136", "P176", "P178", "P413", "P1303"]
+
+abstract_relations = ['P138', 'P276', 'P31', 'P937', 'P279', 'P527', 'P101', 'P361']
 
 relation_names: Dict[str, str] = {}
 relation_cardinality: Dict[str, str] = {}
@@ -78,3 +81,20 @@ def get_all_templates() -> List[str]:
         for template in current_templates:
             templates.append(template)
     return templates
+
+
+def get_length_for_relation(tokenizer: Callable, keys=None) -> List[List[Union[str, int]]]:
+    if keys is None:
+        keys = KEYS
+    rows: List[List[Union[str, int]]] = []
+    for relation in relations:
+        row: List[Union[str, int]] = [relation]
+        templates: Dict = get_templates(relation, "foo", "bar", keys)
+        for key in keys:
+            row.append(len(tokenizer(templates[key])))
+        rows.append(row)
+    rows = sorted(rows, key=lambda row: row[0])
+    return [["relations"] + keys] + rows
+
+
+

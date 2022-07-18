@@ -15,7 +15,7 @@ KEYS = [SIMPLE, COMPOUND, COMPLEX, COMCOM]
 
 
 class TypologyQuerier:
-    def __init__(self, model: nn.Module, relations: List[str], top_k: int, mask_token: str , keys: List = KEYS):
+    def __init__(self, model: nn.Module, relations: List[str], top_k: int, mask_token: str, keys: List = KEYS):
         self.model: nn.Module = model
         self.relations: List[str] = relations
         self.keys: List[str] = keys
@@ -28,7 +28,7 @@ class TypologyQuerier:
         for relation in self.relations:
             for sub, obj in tqdm(triples[relation]):
                 templates: Dict = get_templates(relation, sub, self.mask, self.keys)
-                answers: Dict[str, List] = {key:self.model(templates[key]) for key in self.keys}
+                answers: Dict[str, List] = {key: self.model(templates[key]) for key in self.keys}
                 self.results.process_answers(obj, relation, answers)
 
     def set_top_k(self, top_k: int):
@@ -50,3 +50,10 @@ class TypologyQuerier:
     def print_for_latex(self, header_kex: str = "accuracy"):
         for row in self.results.print_for_latex(header_kex):
             print(row)
+
+    def print_global_latex(self, header_kex: str = "accuracy"):
+        for row in self.results.print_global_latex(header_kex):
+            print(row)
+
+    def results_for_calculation(self, header_key: str = "accuracy"):
+        return self.results.results_for_calculation(header_key)

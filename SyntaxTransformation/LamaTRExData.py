@@ -48,8 +48,9 @@ class LamaTRExData:
     def __init__(self, train: bool = False, relations=None) -> None:
         self.relations = RELATIONS if relations is None else relations
         self.data_dir: str = config["locations"]["train_data_dir"] if train else config["locations"]["test_data_dir"]
-        self.data: Dict = {rel: [] for rel in self.relations}
+        self.data: Dict[str, List[Tuple[str, str]]] = {rel: [] for rel in self.relations}
         self.data_set: List[Tuple[Tuple[str, str], str]] = []
+        self.abstract_data: Dict[str, List[Tuple[str, str]]] = {}
 
     def load(self) -> None:
         for file_name in os.listdir(self.data_dir):
@@ -66,5 +67,15 @@ class LamaTRExData:
         for relation, pair in self.data.items():
             for subj, obj in pair:
                 self.data_set.append(((subj, relation), obj))
+
+    def load_abstract(self):
+        for rel, triples in self.data.items():
+            abstract_triples: List[Tuple[str, str]] = []
+            for subj, obj in triples:
+                if obj.islower() and subj.islower():
+                    abstract_triples.append((subj, obj))
+            if not len(abstract_triples) == 0:
+                self.abstract_data[rel] = abstract_triples
+
 
 

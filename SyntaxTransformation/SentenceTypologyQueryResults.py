@@ -165,5 +165,31 @@ class SentenceTypologyQueryResults:
 
         return sorted(rows, key=get_rel_card_from_str_row)
 
+    def print_global_latex(self, header_key: str) -> List[str]:
+        rows: List[str] = []
+        row_total: str = "Total "
+        for key in self.keys:
+            row_total = f"{row_total} & {self.total_results.get()[key][header_key]:.2f}"
+        rows.append(f"{row_total} \\\\")
+
+        for card, result in self.cardinality_results.items():
+            row: str = f"{card} "
+            for key in self.keys:
+                row = f"{row} & {result.get()[key][header_key]:.2f}"
+            rows.append(f"{row} \\\\")
+
+        return rows
+
+    def results_for_calculation(self, header_key: str):
+        rows: List[List[Union[str, float]]] = []
+        for relation, result in self.relation_results.items():
+            row: List[Union[str, float]] = [relation]
+            for key in self.keys:
+                row.append(result.get()[key][header_key])
+            rows.append(row)
+
+        rows = sorted(rows, key=lambda row: row[0])
+        return [["relations"] + self.keys] + rows
+
 
 
