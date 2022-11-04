@@ -1,4 +1,5 @@
 import json
+import math
 from os.path import isfile, join
 from typing import Dict, List, Union, Callable
 from os import listdir
@@ -12,7 +13,12 @@ COMCOM = "compound-complex"
 SUBJ_LABEL = "[SUBJ_LABEL]"
 OBJ_LABEL = "[OBJ_LABEL]"
 
+SUB_TOKEN = 2548
+OBJ_TOKEN = 4231
+
 KEYS = [SIMPLE, COMPOUND, COMPLEX, COMCOM]
+
+CARDINALITIES = ["1:1", "N:1", "N:M"]
 
 PROJECT_PATH = "/Users/tim/projects/ContextualKnowledgeOfLMs/SyntaxTransformation"
 RELATIONS_PATH = f"{PROJECT_PATH}/relation_templates/relations"
@@ -83,7 +89,7 @@ def get_all_templates() -> List[str]:
     return templates
 
 
-def get_length_for_relation(tokenizer: Callable, keys=None) -> List[List[Union[str, int]]]:
+def get_length_for_relation(tokenizer: Callable, keys: List[str] = None) -> List[List[Union[str, int]]]:
     if keys is None:
         keys = KEYS
     rows: List[List[Union[str, int]]] = []
@@ -96,5 +102,57 @@ def get_length_for_relation(tokenizer: Callable, keys=None) -> List[List[Union[s
     rows = sorted(rows, key=lambda row: row[0])
     return [["relations"] + keys] + rows
 
+
+def get_order_for_relation(tokenizer: Callable, keys: List[str] = None):
+    if keys is None:
+        keys = KEYS
+    metric: Callable = lambda sentence: int(sentence.find("subject") < sentence.find("object"))
+    return metric_for_relation(keys, metric)
+
+
+def get_distance_for_relation(tokenizer: Callable, keys: List[str] = None) -> List[List[Union[str, int]]]:
+    if keys is None:
+        keys = KEYS
+    metric: Callable = lambda sentence: abs(tokenizer(sentence).index(SUB_TOKEN) - tokenizer(sentence).index(OBJ_TOKEN))
+    return metric_for_relation(keys, metric)
+
+
+def starts_with_mask(keys: List[str] = None):
+    if keys is None:
+        keys = KEYS
+    metric: Callable = lambda sentence: 0 if sentence.find("object") == 0 else 1
+    return metric_for_relation(keys, metric)
+
+
+def starts_with_sub(keys: List[str] = None):
+    if keys is None:
+        keys = KEYS
+    metric: Callable = lambda sentence: 1 if sentence.find("subject") == 0 else 0
+    return metric_for_relation(keys, metric)
+
+
+def metric_for_relation(keys: List[str], metric: Callable[[str], int]) -> List[List[Union[str, int]]]:
+    rows: List[List[Union[str, int]]] = []
+    for relation in relations:
+        row: List[Union[str, int]] = [relation]
+        templates: Dict = get_templates(relation, "subject", "object", keys)
+        for key in keys:
+            row.append(metric(templates[key]))
+        rows.append(row)
+    return [["relations"] + keys] + rows
+
+
+def get_relations_with_last_digit(digit: int):
+    assert 0 <= digit <= 9, "digit must be a single digit"
+    return list(filter(lambda rel: rel[-1] == str(digit), relations))
+
+
+def get_relations_for_cardinalities(relationList: List[str]) -> Dict[str, List[str]]:
+    res: Dict[str, List[str]] = {card: [] for card in CARDINALITIES}
+
+    for relation in relationList:
+        res[get_relation_cardinality(relation)].append(relation)
+
+    return res
 
 

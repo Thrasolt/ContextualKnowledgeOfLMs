@@ -16,3 +16,7 @@ tabulate
 matplotlib
 pickle5
 filelock
+Flask
+six
+mysql
+mysql-connector-python

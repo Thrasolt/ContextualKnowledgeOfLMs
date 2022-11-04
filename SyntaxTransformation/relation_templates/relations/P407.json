@@ -4,5 +4,5 @@
   "simple": "[SUBJ_LABEL] was written in [OBJ_LABEL].",
   "compound": "[OBJ_LABEL] is a language and it was used to write [SUBJ_LABEL].",
   "complex": "[OBJ_LABEL] is a language, which was used to write [SUBJ_LABEL].",
-  "compound-complex": "[OBJ_LABEL] is a language in which many works were written in and it was also used to write [SUBJ_LABEL]"
+  "compound-complex": "[OBJ_LABEL] is a language in which many works were written in and it was also used to write [SUBJ_LABEL]."
 }

@@ -3,6 +3,6 @@
   "cardinality": "N:1",
   "simple": "The native language of [SUBJ_LABEL] is [OBJ_LABEL].",
   "compound": "[SUBJ_LABEL] speaks [OBJ_LABEL] and it is also his native language.",
-  "complex": "[SUBJ_LABEL] has a native language, which is [OBJ_LABEL].",
+  "complex": "[SUBJ_LABEL] has a native language which is [OBJ_LABEL].",
   "compound-complex": "[SUBJ_LABEL] speaks [OBJ_LABEL] and he speaks it well because it is his native language."
 }

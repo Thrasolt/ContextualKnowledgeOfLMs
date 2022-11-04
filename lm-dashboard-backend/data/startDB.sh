@@ -1,0 +1,1 @@
+docker run --name lm-dashboard-mysql -v /Users/tim/dockerData/lm-dashboard:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest

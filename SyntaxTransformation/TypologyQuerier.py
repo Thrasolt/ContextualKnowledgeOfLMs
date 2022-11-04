@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Dict, Callable, List, Tuple
 
 from tqdm import tqdm
@@ -15,7 +17,9 @@ KEYS = [SIMPLE, COMPOUND, COMPLEX, COMCOM]
 
 
 class TypologyQuerier:
-    def __init__(self, model: nn.Module, relations: List[str], top_k: int, mask_token: str, keys: List = KEYS):
+    def __init__(self, model: nn.Module, relations: List[str], top_k: int, mask_token: str, keys=None):
+        if keys is None:
+            keys = KEYS
         self.model: nn.Module = model
         self.relations: List[str] = relations
         self.keys: List[str] = keys
@@ -57,3 +61,6 @@ class TypologyQuerier:
 
     def results_for_calculation(self, header_key: str = "accuracy"):
         return self.results.results_for_calculation(header_key)
+
+    def results_for_persistence(self, header_key: str = "accuracy") -> List[Tuple[str, str | None, float]]:
+        return self.results.results_for_persistence(header_key)

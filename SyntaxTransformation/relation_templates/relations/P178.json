@@ -2,9 +2,9 @@
   "name": "developer",
   "cardinality": "N:M",
   "simple": "[SUBJ_LABEL] was created by [OBJ_LABEL] .",
-  "compound": "[OBJ_LABEL] is developing something and an example of such a development is [SUBJ_LABEL].",
-  "complex": "As a developer [OBJ_LABEL] has developed [SUBJ_LABEL].",
-  "compound-complex": "[OBJ_LABEL] is known for the things it develops and it has developed something, that is called [SUBJ_LABEL].",
+  "compound": "[OBJ_LABEL] has created something and it is called [SUBJ_LABEL].",
+  "complex": "[OBJ_LABEL] has created something that is called [SUBJ_LABEL].",
+  "compound-complex": "[OBJ_LABEL] creates things and there is one example that is called [SUBJ_LABEL].",
   "active": "[OBJ_LABEL] created [SUBJ_LABEL].",
   "passive": "[SUBJ_LABEL] was created by [OBJ_LABEL] .",
   "nominalized": "[SUBJ_LABEL] was a [OBJ_LABEL] creation."

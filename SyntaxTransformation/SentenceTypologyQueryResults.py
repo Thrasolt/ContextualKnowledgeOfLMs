@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import List, Dict, Tuple, Union
 from tabulate import tabulate
 
@@ -191,5 +193,17 @@ class SentenceTypologyQueryResults:
         rows = sorted(rows, key=lambda row: row[0])
         return [["relations"] + self.keys] + rows
 
+    def results_for_persistence(self, header_key: str
+                                ) -> List[Tuple[str, str | None, float]]:
+        rows: List[Tuple[str, str | None, float]] = []
+        for key, res in self.total_results.get().items():
+            rows.append((key, None, res[header_key]))
+        for card in self.cardinality_results.keys():
+            for key, res in self.cardinality_results[card].get().items():
+                rows.append((key, card, res[header_key]))
+        for relation, result in self.relation_results.items():
+            for key in self.keys:
+                rows.append((key, relation, result.get()[key][header_key]))
+        return rows
 
 
