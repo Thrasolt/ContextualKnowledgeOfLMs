@@ -2,20 +2,6 @@ from typing import Dict
 from flask_restful import fields
 
 
-score_field: Dict = {
-    'id': fields.Integer,
-    'model': fields.String,
-    'sentence': fields.String,
-    'relation': fields.String,
-    'subj': fields.String,
-    'obj': fields.String,
-    'score': fields.Float,
-}
-
-score_list_fields = {
-    "scores": fields.List(fields.Nested(score_field))
-}
-
 aggregate_field: Dict = {
     'id': fields.Integer,
     'model': fields.String,

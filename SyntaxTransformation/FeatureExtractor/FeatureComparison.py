@@ -30,7 +30,7 @@ class FeatureComparison:
         self.metric: Callable = metric
         self.relations: List[str] = relations
 
-        self.templater: Callable[[str, str, str], Dict[str, str]] = templater
+        self.templater: Callable[[str, str, str, str], Dict[str, str]] = templater
         self.get_relation_meta: Callable[[str], str] = get_relation_meta
 
         self.keys: List[str] = keys
@@ -97,7 +97,7 @@ class FeatureComparison:
         return [(left, right) for left in self.keys for right in self.keys]
 
     def get_features(self, relation: str, sub: str) -> Dict[str, torch.Tensor]:
-        sentences: Dict[str, str] = self.templater(relation, sub, self.mask)
+        sentences: Dict[str, str] = self.templater(relation, sub, self.mask, self.keys)
         features: Dict[str, torch.Tensor] = {}
         for key in self.keys:
             sentence: str = sentences[key]

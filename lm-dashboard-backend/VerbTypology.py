@@ -1,0 +1,2 @@
+class VerbTypology:
+    pass

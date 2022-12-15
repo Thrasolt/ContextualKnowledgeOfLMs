@@ -71,7 +71,7 @@ class ScorePersistor(ResultPersister):
 
     def update_statement_counter(self):
         self.statement_counter += 1
-        if self.statement_counter > 10000:
+        if self.statement_counter > 100:
             self.connection.commit()
             self.statement_counter = 0
 

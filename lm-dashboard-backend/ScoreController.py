@@ -1,11 +1,11 @@
-from typing import Dict, List
+from typing import Dict
 
 from flask_restful import Resource, marshal_with
-from data.DataBaseAdapter import DataBaseAdapter
-from fields import score_list_fields
+from fields.fields import score_list_fields
+from data.ScoreAdapter import ScoreAdapter
 
 
-adapter = DataBaseAdapter()
+adapter = ScoreAdapter()
 
 
 class ScoreController(Resource):
